@@ -40,6 +40,6 @@ W: https://github.com/tianocore/tianocore.github.io/wiki/Security
 
 EDK II Packages:
 ----------------
-QuarkSocBinPkg
+Silicon/Intel/QuarkSocBinPkg
 M: Michael D Kinney <michael.d.kinney@intel.com>
 M: Kelly Steele <kelly.steele@intel.com>
