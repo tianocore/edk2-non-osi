@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = SnpPV600Dxe
-  FILE_GUID                      = 3246F154-3612-4803-BD4E-4104D7EF944A
+  FILE_GUID                      = 1AB373EB-2CD7-4D5C-9C39-D31845B67F5E
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.0
 

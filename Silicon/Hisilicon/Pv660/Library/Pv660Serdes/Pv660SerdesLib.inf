@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = Pv660SerdesLib
-  FILE_GUID                      = FC5651CA-55D8-4fd2-B6D3-A284D993ABA2
+  FILE_GUID                      = 488347A3-8014-4DC4-8566-B51CA16CE0BB
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = SerdesLib

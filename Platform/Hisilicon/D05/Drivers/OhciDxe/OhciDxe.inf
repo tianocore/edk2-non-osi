@@ -17,7 +17,7 @@
 [defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = NativeOhci
-  FILE_GUID                      = 043D0B5E-DAC1-463a-85BA-2CEDC33A8C4F
+  FILE_GUID                      = 559F7D9C-34A8-4028-815C-D5A73EDEB60F
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.0
 

@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = PlatformSysCtrlLibPv660
-  FILE_GUID                      = EBF63479-8F72-4ada-8B2A-960322F7F61A
+  FILE_GUID                      = B6C2EF97-2E30-4AA4-A3F4-D4EB1BBA1CD2
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = PlatformSysCtrlLib

@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = PlatformSysCtrlLibHi1610
-  FILE_GUID                      = EBF63479-8F72-4ada-8B2A-960322F7F61A
+  FILE_GUID                      = 0DC0BBF4-2E09-4943-9534-48BF2EE274D3
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = PlatformSysCtrlLib

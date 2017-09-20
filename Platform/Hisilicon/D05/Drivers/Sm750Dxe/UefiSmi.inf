@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION          = 0x00010019
   BASE_NAME            = SmiGraphicsOutput
-  FILE_GUID            = BFB7B510-B09B-11DB-96E3-005056C00008
+  FILE_GUID            = 12584EAB-60CB-43B0-8806-1AE5BEDEEF02
   MODULE_TYPE          = UEFI_DRIVER
   VERSION_STRING       = 1.0
 

@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = IpmiMiscOp
-  FILE_GUID                      = EC68451C-6D10-4ba2-9862-D27D4D6090DB
+  FILE_GUID                      = 536C9EE4-3D34-4EB6-9195-7BEEDE4D4F9F
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = IpmiMiscOpEntry

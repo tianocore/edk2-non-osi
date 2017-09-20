@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = OemAddressMapD05
-  FILE_GUID                      = 32BC48E3-5428-4556-A383-25A23EA816A7
+  FILE_GUID                      = 8F35288F-9AD2-4B4A-ABC2-D97654FB3E5C
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = OemAddressMapLib

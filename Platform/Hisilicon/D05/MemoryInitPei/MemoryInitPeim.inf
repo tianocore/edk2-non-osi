@@ -18,7 +18,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = MemoryInit
-  FILE_GUID                      = c61ef796-b50d-4f98-9f78-4f6f79d800d5
+  FILE_GUID                      = 1E71DFDB-EB4F-465C-BBB3-93D3FEA48437
   MODULE_TYPE                    = PEIM
   VERSION_STRING                 = 1.0
 

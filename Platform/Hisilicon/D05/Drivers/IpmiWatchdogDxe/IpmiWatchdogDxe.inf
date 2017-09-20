@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = IpmiWatchdogDxe
-  FILE_GUID                      = 7C7ACA9F-DB25-43FB-A479-1B6E42F38792
+  FILE_GUID                      = 4C112583-9092-4712-BBBF-429B4B66220F
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = InitializeWatchdogDxeEntry

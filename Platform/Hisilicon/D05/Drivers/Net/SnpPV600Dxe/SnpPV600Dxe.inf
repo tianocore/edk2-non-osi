@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = SnpPV600Dxe
-  FILE_GUID                      = 3247F15F-3612-4803-BD4E-4104D7EF944A
+  FILE_GUID                      = 6BB8E531-2E49-43CC-AF7A-7CABDAEB7B7A
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
 

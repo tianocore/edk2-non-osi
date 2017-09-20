@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = GetInfoFromBmc
-  FILE_GUID                      = 43B59C81-9C5F-4021-B0F2-947DB839B781
+  FILE_GUID                      = DFDF885A-623D-4D13-9EB6-8454BA30A7CD
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = GetBmcInfoDriverEntry

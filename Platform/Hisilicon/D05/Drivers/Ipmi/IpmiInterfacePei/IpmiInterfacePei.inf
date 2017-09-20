@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = IpmiInterfacePei
-  FILE_GUID                      = 269702AF-8004-4570-A08E-00762AE65D15
+  FILE_GUID                      = 0E169987-AC8F-4DF8-9A67-D2860C15699D
   MODULE_TYPE                    = PEIM
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = IpmiInterfacePeiEntry

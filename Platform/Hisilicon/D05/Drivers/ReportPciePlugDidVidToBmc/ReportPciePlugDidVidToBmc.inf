@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = ReportPciePlugDidVidToBmc
-  FILE_GUID                      = 9BC4A5D1-5A46-4A6C-AF11-4875268179D3
+  FILE_GUID                      = 5C6B2DC9-D4F5-405A-94A4-4EA9E74A1800
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
 

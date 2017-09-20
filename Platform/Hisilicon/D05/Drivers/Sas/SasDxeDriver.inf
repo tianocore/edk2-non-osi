@@ -17,7 +17,7 @@
 [Defines]
   INF_VERSION                    = 0x00010019
   BASE_NAME                      = SasDriverDxe
-  FILE_GUID                      = 49ea041e-6752-42ca-b0b1-7344fe234567
+  FILE_GUID                      = 6F39A263-C676-4FED-8609-33148079C721
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.0
 

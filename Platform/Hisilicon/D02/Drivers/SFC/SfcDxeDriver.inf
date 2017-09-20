@@ -16,7 +16,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = SFCDriver
-  FILE_GUID                      = FC5651CA-55D8-4fd2-B6D3-A284D993ABA2
+  FILE_GUID                      = 02C6BAAE-6E43-4910-8084-60D5045729A0
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = SFCInitialize
