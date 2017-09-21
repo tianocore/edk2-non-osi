@@ -1,7 +1,7 @@
 #/** @file
 #
-#    Copyright (c) 2016, Hisilicon Limited. All rights reserved.
-#    Copyright (c) 2016-2017, Linaro Limited. All rights reserved.
+#    Copyright (c) 2017, Hisilicon Limited. All rights reserved.
+#    Copyright (c) 2017, Linaro Limited. All rights reserved.
 #
 #    This program and the accompanying materials
 #    are licensed and made available under the terms and conditions of the BSD License
@@ -15,13 +15,10 @@
 
 [Defines]
   INF_VERSION                    = 0x00010019
-  BASE_NAME                      = SnpPV600Dxe
-  FILE_GUID                      = 85F85FDE-FDA1-465A-B22E-488F1A6F966C
-  MODULE_TYPE                    = UEFI_DRIVER
+  BASE_NAME                      = SnpPlatform
+  FILE_GUID                      = 102D8FC9-20A4-42EB-AC14-1C98BA5B17A8
+  MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
 
-  ENTRY_POINT                    = InitializeSnpPV600Driver
-  UNLOAD_IMAGE                   = SnpPV600Unload
-
-[Binaries]
-  PE32|SnpPV600Dxe.efi|*
+[Binaries.AARCH64]
+  PE32|SnpPlatform.efi|*
