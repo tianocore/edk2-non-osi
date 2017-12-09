@@ -4,5 +4,5 @@ DeveloperBox platform, based on the Socionext SynQuacer SoC.
 
 fip_all_arm_tf.bin - prebuilt ARM Trusted Firmware RELEASE binary
 Repo: https://git.linaro.org/leg/noupstream/arm-trusted-firmware.git
-Commit: 42ad2cff0106358d1e29c3c96a4ebe92d08d4eba
+Commit: 0541b9edd636bd45f80026218b65fe7644e86b47
 
