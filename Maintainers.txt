@@ -41,9 +41,8 @@ W: https://github.com/tianocore/tianocore.github.io/wiki/Security
 EDK II Packages:
 ----------------
 
-Platform/Intel/ClevoOpenBoardBinPkg
+Platform/Intel/KabylakeOpenBoardBinPkg
 M: Michael Kubacki <michael.a.kubacki@intel.com>
-M: Ankit Sinha <ankit.sinha@intel.com>
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 
 Platform/Intel/CoffeelakeSiliconBinPkg
