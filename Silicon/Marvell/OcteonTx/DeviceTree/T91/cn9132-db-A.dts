@@ -55,12 +55,6 @@
 
 &cp2_sata0 {
         status = "okay";
-        /* SLM-1521-V2, CON4 */
-        sata-port@0 {
-                status = "okay";
-                /* Generic PHY, providing serdes lanes */
-                phys = <&cp2_comphy2 0>;
-        };
 };
 
 /* CON 2 on SLM-1683 - microSD */
