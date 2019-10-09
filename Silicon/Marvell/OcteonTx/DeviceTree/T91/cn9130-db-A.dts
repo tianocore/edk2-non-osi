@@ -1,0 +1,185 @@
+/*
+ * Copyright (C) 2018 Marvell International Ltd.
+ *
+ * SPDX-License-Identifier:    GPL-2.0
+ * https://spdx.org/licenses
+ */
+
+#include "cn9130-db.dtsi"
+
+/ {
+        model = "Model: Marvell CN9130 development board (CP NOR) setup(A)";
+        compatible = "marvell,cn9130-db-A", "marvell,armada-ap807-quad",
+                     "marvell,armada-ap807";
+
+        chosen {
+                stdout-path = "serial0:115200n8";
+        };
+
+        aliases {
+                i2c0 = &cp0_i2c0;
+                ethernet0 = &cp0_eth0;
+                ethernet1 = &cp0_eth1;
+                ethernet2 = &cp0_eth2;
+        };
+
+        memory@00000000 {
+                device_type = "memory";
+                reg = <0x0 0x0 0x0 0x80000000>;
+        };
+};
+
+&uart0 {
+        status = "okay";
+};
+
+/* on-board eMMC - U9 */
+&ap_sdhci0 {
+        pinctrl-names = "default";
+        bus-width = <8>;
+        status = "okay";
+        vqmmc-supply = <&ap0_reg_sd_vccq>;
+};
+
+/*
+ * CP related configuration
+ */
+&cp0_i2c0 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_i2c0_pins>;
+        status = "okay";
+        clock-frequency = <100000>;
+};
+
+&cp0_i2c1 {
+        status = "okay";
+};
+
+/* CON 28 */
+&cp0_sdhci0 {
+        status = "okay";
+};
+
+/* U54 */
+&cp0_nand_controller {
+        pinctrl-names = "default";
+        pinctrl-0 = <&nand_pins>;
+
+        nand@0 {
+                reg = <0>;
+                label = "main-storage";
+                nand-rb = <0>;
+                nand-ecc-mode = "hw";
+                nand-on-flash-bbt;
+                nand-ecc-strength = <8>;
+                nand-ecc-step-size = <512>;
+
+                partitions {
+                        compatible = "fixed-partitions";
+                        #address-cells = <1>;
+                        #size-cells = <1>;
+
+                        partition@0 {
+                                label = "U-Boot";
+                                reg = <0 0x200000>;
+                        };
+                        partition@200000 {
+                                label = "Linux";
+                                reg = <0x200000 0xd00000>;
+                        };
+                        partition@1000000 {
+                                label = "Filesystem";
+                                reg = <0x1000000 0x3f000000>;
+                        };
+                };
+        };
+};
+
+/* U55 */
+&cp0_spi1 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_spi0_pins>;
+        reg = <0x700680 0x50>,                /* control */
+              <0x2000000 0x1000000>;        /* CS0 */
+        status = "disabled";
+
+        spi-flash@0 {
+                #address-cells = <0x1>;
+                #size-cells = <0x1>;
+                compatible = "jedec,spi-nor";
+                reg = <0x0>;
+                /* On-board MUX does not allow higher frequencies */
+                spi-max-frequency = <40000000>;
+
+                partitions {
+                        compatible = "fixed-partitions";
+                        #address-cells = <1>;
+                        #size-cells = <1>;
+
+                        partition@0 {
+                                label = "U-Boot";
+                                reg = <0x0 0x200000>;
+                        };
+
+                        partition@400000 {
+                                label = "Filesystem";
+                                reg = <0x200000 0xe00000>;
+                        };
+                };
+        };
+};
+
+/* SLM-1521-V2, CON6 */
+&cp0_pcie0 {
+        status = "okay";
+        num-lanes = <4>;
+        num-viewport = <8>;
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp0_comphy0 0
+                &cp0_comphy1 0
+                &cp0_comphy2 0
+                &cp0_comphy3 0>;
+};
+
+&cp0_sata0 {
+        status = "okay";
+        /* SLM-1521-V2, CON2 */
+};
+
+&cp0_mdio {
+        status = "okay";
+        phy0: ethernet-phy@0 {
+                reg = <0>;
+        };
+        phy1: ethernet-phy@1 {
+                reg = <1>;
+        };
+};
+
+&cp0_ethernet {
+        status = "okay";
+};
+
+/* SLM-1521-V2, CON9 */
+&cp0_eth0 {
+        status = "okay";
+        phy-mode = "10gbase-kr";
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp0_comphy4 0>;
+        managed = "in-band-status";
+        sfp = <&cp0_sfp_eth0>;
+};
+
+/* CON56 */
+&cp0_eth1 {
+        status = "okay";
+        phy = <&phy0>;
+        phy-mode = "rgmii-id";
+};
+
+/* CON57 */
+&cp0_eth2 {
+        status = "okay";
+        phy = <&phy1>;
+        phy-mode = "rgmii-id";
+};

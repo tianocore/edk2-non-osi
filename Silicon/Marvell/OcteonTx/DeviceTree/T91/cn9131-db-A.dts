@@ -1,0 +1,29 @@
+/*
+ * Copyright (C) 2018 Marvell International Ltd.
+ *
+ * SPDX-License-Identifier:    GPL-2.0
+ * https://spdx.org/licenses
+ */
+
+#include "cn9130-db-A.dts"
+#include "cn9131-db.dtsi"
+
+/ {
+        model = "Marvell CN9131 development board (CP NOR) setup(A)";
+        compatible = "marvell,cn9131-db-A", "marvell,armada-ap807-quad",
+                     "marvell,armada-ap807";
+};
+
+&cp1_ethernet {
+        status = "okay";
+};
+
+/* CON50 */
+&cp1_eth0 {
+        status = "okay";
+        phy-mode = "10gbase-kr";
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp1_comphy4 0>;
+        managed = "in-band-status";
+        sfp = <&cp1_sfp_eth1>;
+};
