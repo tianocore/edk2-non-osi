@@ -42,17 +42,15 @@ EDK II Packages:
 ----------------
 
 Platform/Intel/KabylakeOpenBoardBinPkg
-M: Michael Kubacki <michael.a.kubacki@intel.com>
+M: Chasel Chiu <chasel.chiu@intel.com>
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 
 Platform/Intel/CoffeelakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
-M: Michael A Kubacki <michael.a.kubacki@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 
 Silicon/Intel/KabylakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
-M: Michael A Kubacki <michael.a.kubacki@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 
 Silicon/Intel/PurleySiliconBinPkg
