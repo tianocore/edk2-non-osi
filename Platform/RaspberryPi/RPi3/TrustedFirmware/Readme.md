@@ -20,13 +20,15 @@ which results in the following memory mapping:
     0x00000000 +-----------------+
                |       ROM       | BL1
     0x00010000 +-----------------+
-               |       DTB       | (Loaded by the VideoCore)
+               |     Nothing     |
     0x00020000 +-----------------+
                |       FIP       |
     0x00030000 +-----------------+
                |                 |
                |  UEFI PAYLOAD   |
                |                 |
+    0x001f0000 +-----------------+
+               |       DTB       | (Loaded by the VideoCore)
     0x00200000 +-----------------+
                |   Secure SRAM   | BL2, BL31
     0x00300000 +-----------------+
