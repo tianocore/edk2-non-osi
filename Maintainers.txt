@@ -49,6 +49,10 @@ Platform/Intel/CoffeelakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 
+Platform/Intel/CometlakeSiliconBinPkg
+M: Kathappan Esakkithevar <kathappan.esakkithevar@intel.com>
+M: Sai Chaganty <rangasai.v.chaganty@intel.com>
+
 Silicon/Intel/KabylakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
