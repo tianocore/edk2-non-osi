@@ -1,0 +1,16 @@
+## @file
+#
+# Copyright (c) 2020 - 2021, Ampere Computing LLC. All rights reserved.<BR>
+#
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x0001001B
+  PACKAGE_NAME                   = AmpereAltraBinPkg
+  PACKAGE_GUID                   = 04F7CB64-0F97-4D05-86B8-34987F4E1B21
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
