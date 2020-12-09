@@ -53,6 +53,11 @@ Platform/Intel/CometlakeSiliconBinPkg
 M: Kathappan Esakkithevar <kathappan.esakkithevar@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 
+Silicon/Intel/ElkhartlakeSiliconBinPkg
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+M: Sai Chaganty <rangasai.v.chaganty@intel.com>
+R: Jin Jhu Lim <jin.jhu.lim@intel.com>
+
 Silicon/Intel/KabylakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
