@@ -16,7 +16,7 @@
   VERSION_STRING = 1.0
 
 [Sources]
-  cn9131-db-A.dts
+  cn9131-db.dts
 
 [Packages]
   MdePkg/MdePkg.dec

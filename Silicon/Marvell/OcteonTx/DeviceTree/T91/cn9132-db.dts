@@ -1,35 +1,22 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 /*
- * copyright (c) 2019 marvell international ltd.
+ * Copyright (C) 2019 Marvell International Ltd.
  *
- * spdx-license-identifier:    gpl-2.0
- * https://spdx.org/licenses
+ * Device tree for the CN9132-DB board.
  */
 
-#undef CP110_NUM
-#undef CP110_NAME
-#undef CP110_BASE
-#undef CP110_PCIE0_BASE
-#undef CP110_PCIE1_BASE
-#undef CP110_PCIE2_BASE
-#undef CP110_PCIEx_CPU_MEM_BASE
-#undef CP110_PCIEx_MEM_BASE
-
-/* CP110-1 Settings */
-#define CP110_NAME                       cp2
-#define CP110_NUM                        2
-#define CP110_BASE                       f6000000
-#define CP110_PCIE0_BASE                 f6600000
-#define CP110_PCIE1_BASE                 f6620000
-#define CP110_PCIE2_BASE                 f6640000
-#define CP110_PCIEx_CPU_MEM_BASE(iface)  (0xe5000000 + (iface) * 0x1000000)
-#define CP110_PCIEx_MEM_BASE(iface)      (CP110_PCIEx_CPU_MEM_BASE(iface))
-
-#include "armada-cp110.dtsi"
+#include "cn9131-db.dts"
 
 / {
-        model = "DB-CN-9132";
-        compatible = "marvell,cn9132", "marvell,armada-ap807-quad",
-                     "marvell,armada-ap807";
+        model = "Marvell Armada CN9132-DB";
+        compatible = "marvell,cn9132", "marvell,cn9131", "marvell,cn9130",
+                     "marvell,armada-ap807-quad", "marvell,armada-ap807";
+
+        aliases {
+                gpio5 = &cp2_gpio1;
+                gpio6 = &cp2_gpio2;
+                ethernet5 = &cp2_eth0;
+        };
 
         cp2_reg_usb3_vbus0: cp2_usb3_vbus@0 {
                 compatible = "regulator-fixed";
@@ -71,16 +58,57 @@
         cp2_sfp_eth0: sfp-eth0 {
                 compatible = "sff,sfp";
                 i2c-bus = <&cp2_sfpp0_i2c>;
-                los-gpio = <&cp2_moudle_expander1 11 GPIO_ACTIVE_HIGH>;
-                mod-def0-gpio = <&cp2_moudle_expander1 10 GPIO_ACTIVE_LOW>;
-                tx-disable-gpio = <&cp2_moudle_expander1 9 GPIO_ACTIVE_HIGH>;
-                tx-fault-gpio = <&cp2_moudle_expander1 8 GPIO_ACTIVE_HIGH>;
+                los-gpio = <&cp2_module_expander1 11 GPIO_ACTIVE_HIGH>;
+                mod-def0-gpio = <&cp2_module_expander1 10 GPIO_ACTIVE_LOW>;
+                tx-disable-gpio = <&cp2_module_expander1 9 GPIO_ACTIVE_HIGH>;
+                tx-fault-gpio = <&cp2_module_expander1 8 GPIO_ACTIVE_HIGH>;
+                /*
+                 * SFP cages are unconnected on early PCBs because of an the I2C
+                 * lanes not being connected. Prevent the port for being
+                 * unusable by disabling the SFP node.
+                 */
                 status = "disabled";
         };
 };
 
+/*
+ * Instantiate the second slave CP115
+ */
+
+#define CP11X_NAME                cp2
+#define CP11X_BASE                f6000000
+#define CP11X_PCIEx_MEM_BASE(iface) (0xe5000000 + (iface * 0x1000000))
+#define CP11X_PCIEx_MEM_SIZE(iface) 0xf00000
+#define CP11X_PCIE0_BASE        f6600000
+#define CP11X_PCIE1_BASE        f6620000
+#define CP11X_PCIE2_BASE        f6640000
+
+#include "armada-cp115.dtsi"
+
+#undef CP11X_NAME
+#undef CP11X_BASE
+#undef CP11X_PCIEx_MEM_BASE
+#undef CP11X_PCIEx_MEM_SIZE
+#undef CP11X_PCIE0_BASE
+#undef CP11X_PCIE1_BASE
+#undef CP11X_PCIE2_BASE
+
 &cp2_crypto {
+        status = "disabled";
+};
+
+&cp2_ethernet {
         status = "okay";
+};
+
+/* SLM-1521-V2, CON9 */
+&cp2_eth0 {
+        status = "disabled";
+        phy-mode = "10gbase-kr";
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp2_comphy4 0>;
+        managed = "in-band-status";
+        sfp = <&cp2_sfp_eth0>;
 };
 
 &cp2_gpio1 {
@@ -111,7 +139,7 @@
                         #size-cells = <0>;
                         reg = <1>;
                         /* U12 */
-                        cp2_moudle_expander1: pca9555@21 {
+                        cp2_module_expander1: pca9555@21 {
                                 compatible = "nxp,pca9555";
                                 pinctrl-names = "default";
                                 gpio-controller;
@@ -122,7 +150,38 @@
         };
 };
 
+/* SLM-1521-V2, CON6 */
+&cp2_pcie0 {
+        status = "okay";
+        num-lanes = <2>;
+        num-viewport = <8>;
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp2_comphy0 0
+                &cp2_comphy1 0>;
+};
+
+/* SLM-1521-V2, CON8 */
+&cp2_pcie2 {
+        status = "okay";
+        num-lanes = <1>;
+        num-viewport = <8>;
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp2_comphy5 2>;
+};
+
+&cp2_sata0 {
+        status = "okay";
+
+        /* SLM-1521-V2, CON4 */
+        sata-port@0 {
+                /* Generic PHY, providing serdes lanes */
+                phys = <&cp2_comphy2 0>;
+        };
+};
+
+/* CON 2 on SLM-1683 - microSD */
 &cp2_sdhci0 {
+        status = "okay";
         pinctrl-names = "default";
         pinctrl-0 = <&cp2_sdhci_pins>;
         bus-width = <4>;
@@ -132,7 +191,7 @@
 
 &cp2_syscon0 {
         cp2_pinctrl: pinctrl {
-                compatible = "marvell,armada-7k-pinctrl";
+                compatible = "marvell,cp115-standalone-pinctrl";
 
                 cp2_i2c0_pins: cp2-i2c-pins-0 {
                         marvell,pins = "mpp37", "mpp38";
@@ -152,8 +211,11 @@
         phy-names = "usb";
 };
 
+/* SLM-1521-V2, CON11 */
 &cp2_usb3_1 {
         status = "okay";
         usb-phy = <&cp2_usb3_0_phy1>;
         phy-names = "usb";
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp2_comphy3 1>;
 };
