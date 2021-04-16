@@ -56,7 +56,7 @@
 
                 CP11X_LABEL(ethernet): ethernet@0 {
                         compatible = "marvell,armada-7k-pp22";
-                        reg = <0x0 0x100000>, <0x129000 0xb000>;
+                        reg = <0x0 0x100000>, <0x129000 0xb000>, <0x220000 0x800>;
                         clocks = <&CP11X_LABEL(ppv2_clk)>, <&CP11X_LABEL(ppv2_clk)>,
                                  <&CP11X_LABEL(ppv2_clk)>, <&CP11X_LABEL(core_clk)>,
                                  <&CP11X_LABEL(core_clk)>;
@@ -233,12 +233,17 @@
                                 gpio-controller;
                                 #gpio-cells = <2>;
                                 gpio-ranges = <&CP11X_LABEL(pinctrl) 0 0 32>;
+                                marvell,pwm-offset = <0x1f0>;
+                                #pwm-cells = <2>;
                                 interrupt-controller;
                                 interrupts = <86 IRQ_TYPE_LEVEL_HIGH>,
                                         <85 IRQ_TYPE_LEVEL_HIGH>,
                                         <84 IRQ_TYPE_LEVEL_HIGH>,
                                         <83 IRQ_TYPE_LEVEL_HIGH>;
                                 #interrupt-cells = <2>;
+                                clock-names = "core", "axi";
+                                clocks = <&CP11X_LABEL(slow_io_clk)>,
+                                         <&CP11X_LABEL(x2core_clk)>;
                                 status = "disabled";
                         };
 
@@ -249,12 +254,17 @@
                                 gpio-controller;
                                 #gpio-cells = <2>;
                                 gpio-ranges = <&CP11X_LABEL(pinctrl) 0 32 31>;
+                                marvell,pwm-offset = <0x1f0>;
+                                #pwm-cells = <2>;
                                 interrupt-controller;
                                 interrupts = <82 IRQ_TYPE_LEVEL_HIGH>,
                                         <81 IRQ_TYPE_LEVEL_HIGH>,
                                         <80 IRQ_TYPE_LEVEL_HIGH>,
                                         <79 IRQ_TYPE_LEVEL_HIGH>;
                                 #interrupt-cells = <2>;
+                                clock-names = "core", "axi";
+                                clocks = <&CP11X_LABEL(slow_io_clk)>,
+                                         <&CP11X_LABEL(x2core_clk)>;
                                 status = "disabled";
                         };
                 };
@@ -299,9 +309,11 @@
                 };
 
                 CP11X_LABEL(sata0): sata@540000 {
-                        compatible = "marvell,armada-8k-ahci";
+                        compatible = "marvell,armada-8k-ahci",
+                        "generic-ahci";
                         reg = <0x540000 0x30000>;
                         dma-coherent;
+                        interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
                         clocks = <&CP11X_LABEL(core_clk)>,
                                  <&CP11X_LABEL(core_clk)>;
                         #address-cells = <1>;
@@ -309,12 +321,10 @@
                         status = "disabled";
 
                         sata-port@0 {
-                                interrupts = <109 IRQ_TYPE_LEVEL_HIGH>;
                                 reg = <0>;
                         };
 
                         sata-port@1 {
-                                interrupts = <107 IRQ_TYPE_LEVEL_HIGH>;
                                 reg = <1>;
                         };
                 };

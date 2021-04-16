@@ -127,7 +127,7 @@
 
 /* SLM-1521-V2, CON9 */
 &cp0_eth0 {
-        status = "disabled";
+        status = "okay";
         phy-mode = "10gbase-kr";
         /* Generic PHY, providing serdes lanes */
         phys = <&cp0_comphy4 0>;
@@ -306,6 +306,7 @@
 
 /* U55 */
 &cp0_spi1 {
+        status = "disabled";
         pinctrl-names = "default";
         pinctrl-0 = <&cp0_spi0_pins>;
         reg = <0x700680 0x50>;
