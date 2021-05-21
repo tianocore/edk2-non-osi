@@ -1,7 +1,7 @@
 ### @file
 #  Component information file for AcpiPlatform module
 #
-# Copyright (c) 2019 - 2020, Intel Corporation. All rights reserved.<BR>
+# Copyright (c) 2019 - 2021, Intel Corporation. All rights reserved.<BR>
 #
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -16,6 +16,6 @@
 
 [Sources]
   m94806EC_000000D6.mcb
-  m22A0653_000000CC.mcb
-  m22A0655_000000CA.mcb
+  m22A0653_000000EA.mcb
+  m22A0655_000000EC.mcb
 
