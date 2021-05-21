@@ -1,7 +1,7 @@
 ### @file
 #  Component information file for AcpiPlatform module
 #
-# Copyright (c) 2019 - 2020, Intel Corporation. All rights reserved.<BR>
+# Copyright (c) 2019 - 2021, Intel Corporation. All rights reserved.<BR>
 #
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -15,4 +15,4 @@
   MODULE_TYPE                    = USER_DEFINED
 
 [Sources]
-  m_80_806c1_0000006e.mcb
+  m_80_806c1_0000007e.mcb
