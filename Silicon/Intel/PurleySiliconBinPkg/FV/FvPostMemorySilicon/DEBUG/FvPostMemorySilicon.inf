@@ -24,7 +24,7 @@
 
 
 #![Pcd]
-#!  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSBase|0xFFE20000
+#!  gMinPlatformPkgTokenSpaceGuid.PcdFlashFvFspSBase|0xFFD40000
 
 # ## @file
 # #  Component description file for the Silicon Init Post Memory module.
@@ -64,16 +64,18 @@
   MdeModulePkg/MdeModulePkg.dec
   PurleyRefreshSiliconPkg/SiPkg.dec
   PurleyRefreshSiliconPkg/Override/IA32FamilyCpuPkg/IA32FamilyCpuPkg.dec
+  PurleyOpenBoardPkg/OpenBoardPkg.dec
 
 # [Binaries.IA32]
 #   PE32|SiInit.efi
 #   DISPOSABLE|SiInit.pdb
 #
 [PatchPcd.IA32]
-  ## CONSUMES
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000042|0xa288 # 0xA148+0x140
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0x0000000080000000|0x100F4
 
-  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress|0x0000000080000000|0xa220 # 0xA0E0+0x140
+  ## CONSUMES
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000042|0x101AC
+
 
 
 # [Protocols.IA32]
@@ -197,6 +199,22 @@
 #
 [PcdEx.IA32]
   gEfiCpRcPkgTokenSpaceGuid.PcdPcieMmcfgTablePtr
+
+  gOemSkuTokenSpaceGuid.PcdSetupData
+
+  gOemSkuTokenSpaceGuid.PcdPchRcConfigurationData
+
+  gOemSkuTokenSpaceGuid.PcdSocketIioConfigData
+
+  gOemSkuTokenSpaceGuid.PcdSocketCommonRcConfigData
+
+  gOemSkuTokenSpaceGuid.PcdSocketMpLinkConfigData
+
+  gOemSkuTokenSpaceGuid.PcdSocketMemoryConfigData
+
+  gOemSkuTokenSpaceGuid.PcdSocketPowerManagementConfigData
+
+  gOemSkuTokenSpaceGuid.PcdSocketProcessorCoreConfigData
 
 
 # [LibraryClasses.IA32]
