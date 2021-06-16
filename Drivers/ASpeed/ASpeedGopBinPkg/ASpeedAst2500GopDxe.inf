@@ -3,6 +3,7 @@
 #
 #  Copyright (c) 2006 - 2010, Intel Corporation. All rights reserved.<BR>
 #  Copyright (c) 2020, ASPEED Technology Inc. All rights reserved.<BR>
+#  Copyright (c) 2021, American Megatrends International LLC.<BR>
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -17,3 +18,6 @@
 
 [Binaries.AArch64]
   PE32|AArch64/ASpeedAst2500Gop.efi|*
+
+[Binaries.X64]
+  PE32|X64/ASpeedAst2500Gop.efi|*
