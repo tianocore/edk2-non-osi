@@ -66,6 +66,10 @@ Silicon/Intel/PurleySiliconBinPkg
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 M: Isaac W Oram <isaac.w.oram@intel.com>
 
+Silicon/Intel/WhitleySiliconBinPkg
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+M: Isaac W Oram <isaac.w.oram@intel.com>
+
 Silicon/Intel/QuarkSocBinPkg
 M: Michael D Kinney <michael.d.kinney@intel.com>
 M: Kelly Steele <kelly.steele@intel.com>
