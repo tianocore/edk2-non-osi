@@ -1,0 +1,435 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright SolidRun Ltd.
+ *
+ * Device tree for the  CN9130 based COM Express type 7 board.
+ */
+
+#define GPIO_ACTIVE_HIGH 0
+#define GPIO_ACTIVE_LOW  1
+
+#include "cn9130.dtsi"
+
+/ {
+        model = "SolidRun CN9130 based COM Express type 7";
+
+        chosen {
+                stdout-path = "serial0:115200n8";
+        };
+
+        aliases {
+                gpio1 = &cp0_gpio1;
+                gpio2 = &cp0_gpio2;
+                i2c0 = &cp0_i2c0;
+                ethernet0 = &cp0_eth0; // SFP+ Port
+                ethernet1 = &cp0_eth1; // RGMII
+                ethernet2 = &cp0_eth2; // HS-SGMII
+                spi1 = &cp0_spi0;
+                spi2 = &cp0_spi1;
+        };
+
+        memory@00000000 {
+                device_type = "memory";
+                reg = <0x0 0x0 0x0 0x80000000>;
+        };
+        v_3_3: regulator-3-3v {
+                compatible = "regulator-fixed";
+                regulator-name = "v_3_3";
+                regulator-min-microvolt = <3300000>;
+                regulator-max-microvolt = <3300000>;
+                regulator-always-on;
+                status = "okay";
+        };
+        ap0_reg_sd_vccq: ap0_sd_vccq@0 {
+                compatible = "regulator-gpio";
+                regulator-name = "ap0_sd_vccq";
+                regulator-min-microvolt = <1800000>;
+                regulator-max-microvolt = <1800000>;
+                states = <1800000 0x1 3300000 0x0>;
+        };
+
+        cp0_reg_usb3_vbus0: cp0_usb3_vbus@0 {
+                compatible = "regulator-fixed";
+                regulator-name = "cp0-xhci0-vbus";
+                regulator-min-microvolt = <5000000>;
+                regulator-max-microvolt = <5000000>;
+                enable-active-high;
+        };
+
+        cp0_usb3_0_phy0: cp0_usb3_phy@0 {
+                compatible = "usb-nop-xceiv";
+                vcc-supply = <&cp0_reg_usb3_vbus0>;
+        };
+
+        cp0_reg_usb3_vbus1: cp0_usb3_vbus@1 {
+                compatible = "regulator-fixed";
+                regulator-name = "cp0-xhci1-vbus";
+                regulator-min-microvolt = <5000000>;
+                regulator-max-microvolt = <5000000>;
+                enable-active-high;
+        };
+
+        cp0_usb3_0_phy1: cp0_usb3_phy@1 {
+                compatible = "usb-nop-xceiv";
+                vcc-supply = <&cp0_reg_usb3_vbus1>;
+        };
+
+        cp0_reg_sd_vccq: cp0_sd_vccq@0 {
+                compatible = "regulator-gpio";
+                regulator-name = "cp0_sd_vccq";
+                regulator-min-microvolt = <1800000>;
+                regulator-max-microvolt = <3300000>;
+                states = <1800000 0x1
+                        3300000 0x0>;
+        };
+
+        cp0_reg_sd_vcc: cp0_sd_vcc@0 {
+                compatible = "regulator-fixed";
+                regulator-name = "cp0_sd_vcc";
+                regulator-min-microvolt = <3300000>;
+                regulator-max-microvolt = <3300000>;
+                enable-active-high;
+                regulator-always-on;
+        };
+
+        cp0_sfp_eth0: sfp-eth@0 {
+                compatible = "sff,sfp";
+                i2c-bus = <&cp0_sfp_i2c>;
+                mod-def0-gpio = <&cp0_gpio1 24 GPIO_ACTIVE_LOW>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&cp0_sfp_present_pins>;
+        };
+};
+
+&uart0 {
+        status = "okay";
+};
+
+&cp0_uart2 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_uart2_pins>;
+        status = "okay";
+};
+
+/* on-board eMMC  */
+&ap_sdhci0 {
+        pinctrl-names = "default";
+        bus-width = <8>;
+        vqmmc-supply = <&ap0_reg_sd_vccq>;
+        status = "okay";
+};
+
+&cp0_crypto {
+        status = "disabled";
+};
+
+&cp0_ethernet {
+        status = "okay";
+};
+
+/* SFP+ 10GE */
+&cp0_eth0 {
+        status = "okay";
+        phy-mode = "10gbase-kr";
+        phys = <&cp0_comphy4 0>;
+        managed = "in-band-status";
+        sfp = <&cp0_sfp_eth0>;
+};
+
+/* RGMII 1GE */
+&cp0_eth1 {
+        status = "okay";
+        phy = <&phy0>;
+        phy-mode = "rgmii-id";
+};
+
+&cp0_gpio1 {
+        status = "okay";
+};
+
+&cp0_gpio2 {
+        status = "okay";
+};
+
+/* Switch uplink */
+&cp0_eth2 {
+        status = "okay";
+        phy-mode = "2500base-x";
+        phys = <&cp0_comphy5 2>;
+
+        fixed-link {
+                speed = <2500>;
+                full-duplex;
+        };
+};
+
+
+/* EEPROM */
+&cp0_i2c0 {
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_i2c0_pins>;
+        clock-frequency = <100000>;
+        /* EEPROM */
+        eeprom0: eeprom@50 {
+                compatible = "atmel,24c64";
+                reg = <0x50>;
+                pagesize = <0x20>;
+        };
+};
+
+/* I2C Master */
+&cp0_i2c1 {
+        status = "okay";
+        clock-frequency = <100000>;
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_i2c1_pins>;
+
+        i2c-switch@77 {
+                compatible = "nxp,pca9547";
+                reg = <0x77>;
+                 #address-cells = <1>;
+                #size-cells = <0>;
+                clk_gen_i2c: i2c@0 {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <0>;
+                        /*connected to clk generator*/
+                };
+                led_i2c: i2c@1 {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <1>;
+                        /* i2c_led connected to gpio expander on carrier according to com-ex type7 */
+                };
+                cp0_sfp_i2c: i2c@2 {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <2>;
+                        /*connected to sfp cp0_eth0*/
+                };
+
+                smbus: i2c@3 {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <3>;
+                        /* smbus connected to com-ex type7 connector */
+                        current_mon@40 {
+                                compatible = "ti,ina220";
+                                #address-cells = <1>;
+                                #size-cells = <0>;
+                                reg = <0x40>;
+                        };
+                };
+
+                therm_i2c: i2c@4 {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <4>;
+
+                        fan-control-emc2301@2f {
+                                compatible = "smsc,emc2305";
+                                #address-cells = <1>;
+                                #size-cells = <0>;
+                                reg = <0x2f>;
+                                fan@0 {
+                                        reg = <0>;
+                                        pwm-enable = <0>;
+                                        fan-div = <4>;
+                                };
+                        };
+                };
+        };
+};
+&cp0_mdio {
+        status = "okay";
+        pinctrl-0 = <&cp0_ge_mdio_pins>;
+        phy0: ethernet-phy@0 {
+                marvell,reg-init = <3 16 0 0x1a4a>;
+                reg = <0>;
+        };
+
+        switch0: switch0@4 {
+                compatible = "marvell,mv88e6085";
+                reg = <4>;
+                pinctrl-names = "default";
+
+                ports {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        port@1 {
+                                reg = <1>;
+                                label = "lan2";
+                                phy-handle = <&switch0phy0>;
+                        };
+
+                        port@2 {
+                                reg = <2>;
+                                label = "lan1";
+                                phy-handle = <&switch0phy1>;
+                        };
+
+                        port@3 {
+                                reg = <3>;
+                                label = "lan4";
+                                phy-handle = <&switch0phy2>;
+                        };
+
+                        port@4 {
+                                reg = <4>;
+                                label = "lan3";
+                                phy-handle = <&switch0phy3>;
+                        };
+
+                        port@5 {
+                                reg = <5>;
+                                label = "cpu";
+                                ethernet = <&cp0_eth2>;
+                        };
+                };
+
+                mdio {
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+
+                        switch0phy0: switch0phy0@11 {
+                                reg = <0x11>;
+                        };
+
+                        switch0phy1: switch0phy1@12 {
+                                reg = <0x12>;
+                        };
+
+                        switch0phy2: switch0phy2@13 {
+                                reg = <0x13>;
+                        };
+
+                        switch0phy3: switch0phy3@14 {
+                                reg = <0x14>;
+                        };
+                };
+        };
+};
+
+/* PCIE X4 Slot */
+&cp0_pcie0 {
+        status = "okay";
+        num-lanes = <4>;
+        num-viewport = <8>;
+        /* Generic PHY, providing serdes lanes */
+        phys = <&cp0_comphy0 0
+                &cp0_comphy1 0
+                &cp0_comphy2 0
+                &cp0_comphy3 0>;
+};
+
+/* PCIE X1 Slot */
+/*
+*&cp0_pcie2 {
+*        status = "okay";
+*        phys = <&cp0_comphy5 2>;
+*        num-lanes = <1>;
+*};
+*/
+
+/* SD Card */
+&cp0_sdhci0 {
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_sdhci_pins
+                        &cp0_sdhci_cd_pins>;
+        bus-width = <4>;
+        cd-gpios = <&cp0_gpio2 24 GPIO_ACTIVE_LOW>;
+        no-1-8-v;
+        vqmmc-supply = <&v_3_3>;
+        vmmc-supply = <&v_3_3>;
+};
+
+&cp0_spi1 {
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp0_spi1_pins
+                        &cp0_spi1_cs1_pins>;
+        reg = <0x700680 0x50>;
+        spi-flash@0 {
+                #address-cells = <0x1>;
+                #size-cells = <0x1>;
+                compatible = "jedec,spi-nor";
+                reg = <0x0>;
+                spi-max-frequency = <10000000>;
+        };
+        spi-flash@1 {
+                #address-cells = <0x1>;
+                #size-cells = <0x1>;
+                compatible = "jedec,spi-nor";
+                reg = <0x1>;
+                /* On carrier MUX does not allow higher frequencies */
+                spi-max-frequency = <10000000>;
+        };
+};
+
+&cp0_syscon0 {
+        cp0_pinctrl: pinctrl {
+                compatible = "marvell,cp115-standalone-pinctrl";
+
+                cp0_ge_mdio_pins: ge-mdio-pins {
+                        marvell,pins = "mpp40", "mpp41";
+                               marvell,function = "ge";
+                };
+
+                cp0_i2c0_pins: cp0-i2c-pins-0 {
+                        marvell,pins = "mpp37", "mpp38";
+                        marvell,function = "i2c0";
+                };
+                cp0_i2c1_pins: cp0-i2c-pins-1 {
+                        marvell,pins = "mpp35", "mpp36";
+                        marvell,function = "i2c1";
+                };
+                cp0_ge1_rgmii_pins: cp0-ge-rgmii-pins-0 {
+                        marvell,pins =        "mpp0", "mpp1", "mpp2",
+                                        "mpp3", "mpp4", "mpp5",
+                                        "mpp6", "mpp7", "mpp8",
+                                        "mpp9", "mpp10", "mpp11";
+                        marvell,function = "ge0";
+                };
+                cp0_sdhci_cd_pins: cp0-sdhci-cd-pins-0 {
+                        marvell,pins = "mpp55";
+                        marvell,function = "sdio";
+                };
+                cp0_sdhci_pins: cp0-sdhi-pins-0 {
+                        marvell,pins =        "mpp56", "mpp57", "mpp58",
+                                        "mpp59", "mpp60", "mpp61";
+                        marvell,function = "sdio";
+                };
+                cp0_spi1_pins: cp0-spi-pins-1 {
+                        marvell,pins = "mpp13", "mpp14", "mpp15", "mpp16";
+                        marvell,function = "spi1";
+                };
+                cp0_spi1_cs1_pins: cp0-spi-cs1-pins-1 {
+                        marvell,pins = "mpp12";
+                        marvell,function = "spi1";
+                };
+
+                cp0_sfp_present_pins: sfp-present-pins {
+                        marvell,pins = "mpp24";
+                        marvell,function = "gpio";
+                };
+                cp0_uart2_pins: uart22-pins {
+                        marvell,pins = "mpp50", "mpp51";
+                        marvell,function = "uart2";
+                };
+
+        };
+};
+
+&cp0_usb3_0 {
+        status = "okay";
+        usb-phy = <&cp0_usb3_0_phy0>;
+        phy-names = "usb";
+};
+
+&cp0_usb3_1 {
+        status = "okay";
+        usb-phy = <&cp0_usb3_0_phy1>;
+        phy-names = "usb";
+};

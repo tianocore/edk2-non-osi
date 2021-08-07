@@ -1,0 +1,183 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+/*
+ * Copyright SolidRun Ltd.
+ *
+ * Device tree for the CN9132 based COM Express type 7 board"
+ */
+
+#include "cn9131-cex7.dts"
+
+/ {
+        model = "SolidRun CN9132 based COM Express type 7";
+        compatible =         "marvell,cn9132", "marvell,cn9131", "marvell,cn9130",
+                        "marvell,armada-ap807-quad", "marvell,armada-ap807";
+
+        aliases {
+                gpio5 = &cp2_gpio1;
+                gpio6 = &cp2_gpio2;
+                ethernet5 = &cp2_eth0;
+        };
+
+        cp2_reg_usb3_vbus0: cp2_usb3_vbus@0 {
+                compatible = "regulator-fixed";
+                regulator-name = "cp2-xhci0-vbus";
+                regulator-min-microvolt = <5000000>;
+                regulator-max-microvolt = <5000000>;
+                enable-active-high;
+        };
+
+        cp2_usb3_0_phy0: cp2_usb3_phy0 {
+                compatible = "usb-nop-xceiv";
+                vcc-supply = <&cp2_reg_usb3_vbus0>;
+        };
+
+        cp2_reg_usb3_vbus1: cp2_usb3_vbus@1 {
+                compatible = "regulator-fixed";
+                regulator-name = "cp2-xhci1-vbus";
+                regulator-min-microvolt = <5000000>;
+                regulator-max-microvolt = <5000000>;
+                enable-active-high;
+        };
+
+        cp2_usb3_0_phy1: cp2_usb3_phy1 {
+                compatible = "usb-nop-xceiv";
+                vcc-supply = <&cp2_reg_usb3_vbus1>;
+        };
+
+        cp2_sfp_eth0: sfp-eth0 {
+                compatible = "sff,sfp";
+                i2c-bus = <&cp2_i2c1>;
+                mod-def0-gpio = <&cp2_gpio2 18 GPIO_ACTIVE_LOW>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&cp2_sfp_pins>;
+                status = "okay";
+        };
+};
+
+/* Instantiate the second slave CP115 */
+
+#define CP11X_NAME                cp2
+#define CP11X_BASE                f6000000
+#define CP11X_PCIEx_MEM_BASE(iface) (0xe9000000 + (iface * 0x2000000))
+#define CP11X_PCIEx_MEM_SIZE(iface) 0xf00000
+#define CP11X_PCIE0_BASE        f6600000
+#define CP11X_PCIE1_BASE        f6620000
+#define CP11X_PCIE2_BASE        f6640000
+
+#include "armada-cp115.dtsi"
+
+#undef CP11X_NAME
+#undef CP11X_BASE
+#undef CP11X_PCIEx_MEM_BASE
+#undef CP11X_PCIEx_MEM_SIZE
+#undef CP11X_PCIE0_BASE
+#undef CP11X_PCIE1_BASE
+#undef CP11X_PCIE2_BASE
+
+&cp2_crypto {
+        status = "disabled";
+};
+
+&cp2_ethernet {
+        status = "okay";
+};
+
+/* 10GE Port */
+&cp2_eth0 {
+        status = "okay";
+        phy-mode = "5gbase-r";
+        phys = <&cp2_comphy2 0>;
+        phy = <&phy2>;
+        sfp = <&cp2_sfp_eth0>;
+};
+
+&cp2_gpio1 {
+        status = "okay";
+};
+
+&cp2_gpio2 {
+        status = "okay";
+};
+
+&cp2_i2c1 {
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&cp2_i2c1_pins>;
+        clock-frequency = <100000>;
+};
+
+&cp2_xmdio {
+        status = "okay";
+        pinctrl-0 = <&cp2_xmdio_pins>;
+        phy2: ethernet-phy@0 {
+                compatible = "ethernet-phy-ieee802.3-c45";
+                reg = <0>;
+        };
+};
+
+
+/* PCIE0 X1 */
+&cp2_pcie0 {
+        status = "okay";
+        num-lanes = <1>;
+        num-viewport = <8>;
+        phys = <&cp2_comphy0 0>;
+};
+
+/* PCIE1 X1 */
+&cp2_pcie1 {
+        status = "okay";
+        num-lanes = <1>;
+        num-viewport = <8>;
+        phys = <&cp2_comphy4 1>;
+};
+
+/* PCIE2 X1 */
+&cp2_pcie2 {
+        status = "okay";
+        num-lanes = <1>;
+        num-viewport = <8>;
+        phys = <&cp2_comphy5 2>;
+};
+
+/* SATA 1 */
+&cp2_sata0 {
+        status = "okay";
+        sata-port@0 {
+                phys = <&cp2_comphy3 1>;
+        };
+};
+
+&cp2_syscon0 {
+        cp2_pinctrl: pinctrl {
+                compatible = "marvell,cp115-standalone-pinctrl";
+
+                cp2_xmdio_pins: cp2-xmdio-pins-0 {
+                        marvell,pins = "mpp37", "mpp38";
+                        marvell,function = "xg";
+                };
+
+                cp2_i2c1_pins: cp2-i2c-pins-1 {
+                        marvell,pins = "mpp35", "mpp36";
+                        marvell,function = "i2c1";
+                };
+                cp2_sfp_pins: sfp-pins {
+                        marvell,pins = "mpp50";
+                        marvell,function = "gpio";
+                };
+        };
+};
+
+&cp2_usb3_0 {
+        status = "okay";
+        usb-phy = <&cp2_usb3_0_phy0>;
+        phy-names = "usb";
+};
+
+/* USB3 */
+&cp2_usb3_1 {
+        status = "okay";
+        usb-phy = <&cp2_usb3_0_phy1>;
+        phy-names = "usb";
+        phys = <&cp2_comphy1 0>;
+};
