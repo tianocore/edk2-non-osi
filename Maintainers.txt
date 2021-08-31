@@ -45,6 +45,11 @@ Platform/Intel/KabylakeOpenBoardBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 
+Platform/Intel/WhitleyOpenBoardBinPkg
+M: Isaac Oram <isaac.w.oram@intel.com>
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+M: Chasel Chiu <chasel.chiu@intel.com>
+
 Platform/Intel/CoffeelakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
