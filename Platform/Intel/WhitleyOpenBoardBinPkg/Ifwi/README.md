@@ -25,3 +25,4 @@ Board Name  | ME Firmware Type | Version Number
 Wilson City | SPS | 4.4.4.58
 Cooper City | SPS | 4.4.4.33
 Delta Lake  | Ignition | 4.2.4.14
+Junction City | SPS | 4.4.4.58
