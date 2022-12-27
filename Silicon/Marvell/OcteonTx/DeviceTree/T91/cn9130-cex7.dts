@@ -285,6 +285,11 @@
                                 reg = <5>;
                                 label = "cpu";
                                 ethernet = <&cp0_eth2>;
+                                phy-mode = "2500base-x";
+                                fixed-link {
+                                        speed = <2500>;
+                                        full-duplex;
+                                };
                         };
                 };
 
