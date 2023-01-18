@@ -2,8 +2,7 @@
 #  Component description file for ASPEED Graphics Controller Driver.
 #
 #  Copyright (c) 2006 - 2010, Intel Corporation. All rights reserved.<BR>
-#  Copyright (c) 2020, ASPEED Technology Inc. All rights reserved.<BR>
-#  Copyright (c) 2021, American Megatrends International LLC.<BR>
+#  Copyright (c) 2010 - 2023, ASPEED Technology Inc. All rights reserved.<BR>
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -11,13 +10,13 @@
 
 [Defines]
   INF_VERSION                    = 0x00011302
-  BASE_NAME                      = ASpeedAst2500GopDxe
-  FILE_GUID                      = 7F81D838-F91D-4C44-8552-8FB912122FDD
+  BASE_NAME                      = ASpeedAst2600GopDxe
+  FILE_GUID                      = 36f08597-2a8d-4824-9416-59c810b0d9f3
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.29
 
 [Binaries.AArch64]
-  PE32|AArch64/ASpeedAst2500Gop.efi|*
+  PE32|AArch64/ASpeedAst2600Gop.efi|*
 
 [Binaries.X64]
-  PE32|X64/ASpeedAst2500Gop.efi|*
+  PE32|X64/ASpeedAst2600Gop.efi|*
