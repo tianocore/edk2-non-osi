@@ -9,11 +9,11 @@
 ##
 
 [Defines]
-  INF_VERSION                    = 0x00011302
+  INF_VERSION                    = 1.29
   BASE_NAME                      = ASpeedAst2600GopDxe
   FILE_GUID                      = 36f08597-2a8d-4824-9416-59c810b0d9f3
   MODULE_TYPE                    = UEFI_DRIVER
-  VERSION_STRING                 = 1.29
+  VERSION_STRING                 = 1.13.02
 
 [Binaries.AArch64]
   PE32|AArch64/ASpeedAst2600Gop.efi|*
