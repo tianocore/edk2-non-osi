@@ -2,14 +2,14 @@ ARM Trusted Firmware for Raspberry Pi 3
 =======================================
 
 The `bl1.bin` and `fip.bin` TF-A binaries found in this directory were built from the
-[official TF-A 2.6 release](https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/tag/?h=v2.6)
+[official TF-A 2.9 release](https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git/tag/?h=v2.9)
 through a [GitHub build script](https://github.com/pftf/pitf/blob/master/.github/workflows/build.yml)
 that is designed to provide evidence that these binaries match the vanilla TF-A source.
 
-Per the [GitHub Actions log](https://github.com/pftf/pitf/runs/1668471269),
+Per the [GitHub Actions log](https://github.com/pftf/pitf/actions/runs/5071490963),
 the SHA-256 sums for the blobs can be validated to be as follows:
-- `bl1.bin`: `787acb2ca1c99678dcdec70a64b9602f8f8f658a4abb0b3f7edfa5f5efb22f73`
-- `fip.bin`: `fd85f9a230aad88f6a59cf0c5d88e6067f23fb8080c6b8bdc61f1a5f6cbbf9ec`
+- `bl1.bin`: `de32a81d17a3a1251245dd6d9b0a807e6ec54d5b50eecfda31fc9cd2ffb1d5ba`
+- `fip.bin`: `7463cec7914469998d3cfab80b80710e371e8d5673959b303a7c851e37b179bb`
 
 For Raspberry Pi 3 usage, TF-A was built using the command:
 ```
