@@ -4,29 +4,28 @@ Qemu SBSA TF-A binaries
 These binaries have been created from the mainline TF-A
 code checked out at the following commit ID:
 
-commit dcf430656ca8ef964fa55ad9eb81cf838c7837f2 (tag: v2.9-rc0)
-Merge: 3011e1afe b1af2676f
-Author: Manish Pandey <manish.pandey2@arm.com>
-Date:   Thu May 11 13:41:35 2023 +0200
+commit 2503c8f3204c60013de8caa2e165b2875ad735e5 (HEAD -> master, origin/master, origin/HEAD)
+Merge: 9b81d117b bd596a101
+Author: Bipin Ravi <bipin.ravi@arm.com>
+Date:   Thu Jul 13 16:45:54 2023 +0200
 
-    Merge "docs(psci): expound runtime instrumentation docs" into integration
+    Merge "build(fpga): remove a710 from fpga build" into integration
 
 
 This ensures that the following feature for qemu_sbsa platform is
 merged upstream and is included in the build:
 
-commit c598692d0c6a79dd10c34d5a4a740c90261cfc65
+commit 214de62c92b2fc4b7edda9d9d637b7a4c0ba1fa5
 Author: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Date:   Tue Feb 14 09:27:59 2023 +0100
+Date:   Tue Jul 4 15:41:40 2023 +0200
 
-    fix(qemu-sbsa): enable FGT
+    feat(qemu): add "neoverse-v1" cpu support
 
-    QEMU 7.2+ has FEAT_FGT support added to 'max' cpu.
+    Add support to qemu "neoverse-v1" cpu for "qemu_sbsa" ('sbsa-ref')
+    platform.
 
-    So let's enable it to make Debian 'bookworm' kernel boot on sbsa-ref/max setup.
-
+    Change-Id: Id710e2b960e7938d2dbe7a88d9e158a7009fc3d1
     Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-    Change-Id: I49fb3e742b69ce7be5666e0144525dde21a68238
 
 
 NOTE: No modifications to the source code have been done.
