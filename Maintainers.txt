@@ -90,3 +90,7 @@ M: Yi Qian <yi.qian@intel.com>
 Silicon/Intel/TigerlakeSiliconBinPkg
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+
+Silicon/Intel/AlderlakeSiliconBinPkg
+M: Sai Chaganty <rangasai.v.chaganty@intel.com>
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
