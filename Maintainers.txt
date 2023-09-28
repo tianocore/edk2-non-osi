@@ -58,6 +58,15 @@ Platform/Intel/CometlakeSiliconBinPkg
 M: Kathappan Esakkithevar <kathappan.esakkithevar@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
 
+Silicon/AMD
+M: Abner Chang <abner.chang@amd.com>
+M: Abdul Lateef Attar <abdattar@amd.com>
+M: Eric Xing <eric.xing@amd.com>
+
+Silicon/AMD/Vangogh
+M: Duke Zhai <duke.zhai@amd.com>
+M: Eric Xing <eric.xing@amd.com>
+
 Silicon/Ampere/AmpereAltraBinPkg
 M: Nhi Pham <nhi@os.amperecomputing.com>
 M: Vu Nguyen <vunguyen@os.amperecomputing.com>
