@@ -1,0 +1,13 @@
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+FspBlobs and Firmwares Release Notes
+
+Version: UCC3915.3608 for VanGogh
+ScanID:  SWCSD-7334 
+
+Date:   Sep 15 2013
+
+----------------------------------------------------------------------------
+- Description:
+
+1. Initialize FspBlobs and Firmwares for VanGogh B0.
