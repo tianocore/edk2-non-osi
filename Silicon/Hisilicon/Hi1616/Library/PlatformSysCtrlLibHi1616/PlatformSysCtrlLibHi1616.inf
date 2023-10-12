@@ -38,9 +38,9 @@
 
 [LibraryClasses]
   ArmLib
+  HisiOemMiscLib
   IoLib
   OemAddressMapLib
-  OemMiscLib
 
 [FixedPcd]
   gHisiTokenSpaceGuid.PcdAlgSmmuBaseAddress

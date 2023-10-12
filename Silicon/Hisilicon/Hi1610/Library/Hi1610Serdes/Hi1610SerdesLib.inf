@@ -38,7 +38,7 @@
   BaseMemoryLib
   TimerLib
 
-  OemMiscLib
+  HisiOemMiscLib
 
 [BuildOptions]
 

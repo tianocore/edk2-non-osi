@@ -39,7 +39,7 @@
 [LibraryClasses]
   ArmLib
   OemAddressMapLib
-  OemMiscLib
+  HisiOemMiscLib
   IoLib
 
 [FixedPcd]

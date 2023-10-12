@@ -38,7 +38,7 @@
   TimerLib
   IoLib
 
-  OemMiscLib
+  HisiOemMiscLib
 
 [BuildOptions]
 

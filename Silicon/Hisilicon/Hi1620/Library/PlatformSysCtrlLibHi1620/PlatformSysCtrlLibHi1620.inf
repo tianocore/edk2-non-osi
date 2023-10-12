@@ -33,10 +33,10 @@
 
 [LibraryClasses]
   ArmLib
+  HisiOemMiscLib
   IoLib
   LpcLib
   OemAddressMapLib
-  OemMiscLib
   PcdLib
 
 [FixedPcd]
