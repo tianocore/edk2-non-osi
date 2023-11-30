@@ -1,11 +1,38 @@
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
+The different APCB FSP settings between Set1 and Set2
++-----------------------------------------------------------------+
+¦* Components  ¦ Setting                ¦ Set1       ¦ Set2      *¦
+¦--------------+------------------------+------------+------------¦
+¦* APCB        ¦ Hynix16Gb memory       ¦ Unsupport  ¦ Support   *¦
+¦* APCB        ¦ UMA Frame buffer Size  ¦ 256        ¦ 1024      *¦
+¦* FSP         ¦ IOMMU                  ¦ Enabled    ¦ Disabled  *¦
+¦* FSP         ¦ I2C                    ¦ Disabled   ¦ Enabled   *¦
+¦* FSP         ¦ ESPI Clock             ¦ 16.7MHz    ¦ 33MHz     *¦
++-----------------------------------------------------------------+
+
+****************************************************************************
+FspBlobs and Firmwares Release Notes
+
+Version: UCC3B16.3824 for VanGogh
+ScanID:  SWCSD-7436
+
+Date:   Nov 16 2023
+
+----------------------------------------------------------------------------
+- Description:
+
+1. Add different APCB/FSP binaries for Set1 and Set2.
+2. Update FSP and AMD firmware.
+3. Update AmdTools for linux build.
+
+****************************************************************************
 FspBlobs and Firmwares Release Notes
 
 Version: UCC3915.3608 for VanGogh
-ScanID:  SWCSD-7334 
+ScanID:  SWCSD-7334
 
-Date:   Sep 15 2013
+Date:   Sep 15 2023
 
 ----------------------------------------------------------------------------
 - Description:
