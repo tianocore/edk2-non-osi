@@ -50,6 +50,11 @@ M: Isaac Oram <isaac.w.oram@intel.com>
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 M: Chasel Chiu <chasel.chiu@intel.com>
 
+Platform/Intel/EaglestreamOpenBoardBinPkg
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+M: Chasel Chiu <chasel.chiu@intel.com>
+M: Nathaniel Haller <nathaniel.d.haller@intel.com>
+
 Platform/Intel/CoffeelakeSiliconBinPkg
 M: Chasel Chiu <chasel.chiu@intel.com>
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
@@ -87,6 +92,11 @@ M: Isaac W Oram <isaac.w.oram@intel.com>
 Silicon/Intel/WhitleySiliconBinPkg
 M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 M: Isaac W Oram <isaac.w.oram@intel.com>
+
+Silicon/Intel/EaglestreamSiliconBinPkg
+M: Nate DeSimone <nathaniel.l.desimone@intel.com>
+M: Chasel Chiu <chasel.chiu@intel.com>
+M: Nathaniel Haller <nathaniel.d.haller@intel.com>
 
 Silicon/Intel/QuarkSocBinPkg
 M: Michael D Kinney <michael.d.kinney@intel.com>
