@@ -4,55 +4,51 @@ Qemu SBSA TF-A binaries
 These binaries have been created from the mainline TF-A
 code checked out at the following commit ID:
 
-commit 84de50c7d8ca416e504aedb228bb4cab6eed806f (HEAD -> master, origin/master, origin/integration, origin/HEAD)
-Merge: 1e038c94d 4796d2d9b
-Author: Olivier Deprez <olivier.deprez@arm.com>
-Date:   Tue Sep 19 18:15:12 2023 +0200
+commit f36faa71578a14a8c9910aaa57e761f0256ccd52 (HEAD -> master, origin/master, origin/integration, origin/HEAD)
+Merge: 8dad296d6 57ab6d897
+Author: Lauren Wehrmeister <lauren.wehrmeister@arm.com>
+Date:   Tue Mar 12 19:17:49 2024 +0100
 
-    Merge "feat(ethos-n): update npu error handling" into integration
+    Merge "fix(cpus): fix a defect in Cortex-A715 erratum 2561034" into integration
 
 
 This ensures that the following features for qemu_sbsa platform are
 merged upstream and included in the build:
 
-commit 408cde8a59080ac2caa11c4d99474b2ef09f90df
+commit 42925c15bee09162c6dfc8c2204843ffac6201c1
 Author: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Date:   Mon Sep 18 12:47:45 2023 +0200
+Date:   Tue Nov 21 14:53:26 2023 +0100
 
-    fix(qemu_sbsa): align FIP base to BL1 size
+    feat(qemu-sbsa): handle CPU information
 
-    RME patch series shown that we can build larger BL1 than we can run:
+    We want to remove use of DeviceTree from EDK2. So we move
+    functions to TF-A:
 
-    NOTICE:  Booting Trusted Firmware
-    NOTICE:  BL1: v2.9(debug):v2.9.0-736-g08548888a
-    NOTICE:  BL1: Built : 12:10:39, Sep 18 2023
-    INFO:    BL1: RAM 0x3ffee000 - 0x3fffb000
-    INFO:    BL1: Loading BL2
-    WARNING: Firmware Image Package header check failed.
+    - counting cpu cores
+    - checking NUMA node id
+    - checking MPIDR
 
-    RME pushed debug build BL1 over 0x8000 in size.
-    This exposed an error where FIP_BASE (supposed to be at BL1_SIZE offset
-    from start of flash) was actually 0x8000 and not 0x12000.
-    Make sure we have space for BL1 by deriving FIP_BASE from it.
+    And then it gets passed to EDK2 via SMC calls.
 
-    Note: this is a breaking change for edk2 FD image generation, which had
-    similarly hardcoded a 0x8000 offset. These images must be updated in
-    lock-step.
-
-    Change-Id: I8a1a85e82319945a4412c424467d818d5b6e4ecd
+    Change-Id: I1c7fc234ba90ba32433b6e4aa2cf127f26da00fd
     Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
-commit 408f9cb485796a73c5b87da70644665a13c685e4
-Author: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Date:   Fri Sep 15 22:44:04 2023 +0200
+commit 8b7dd8397dd017b61ecda8447e8956a1d9d6d5d3
+Author: Xiong Yining <xiongyining1480@phytium.com.cn>
+Date:   Fri Jan 12 10:47:03 2024 +0000
 
-    feat(qemu): add "neoverse-n2" cpu support
+    feat(qemu-sbsa): handle memory information
 
-    Add support to qemu "neoverse-n2" cpu for "qemu" platform.
-    This one has 2^48 address space so will be used by both systems.
+    As a part of removing DeviceTree from EDK2, we move functions to TF-A:
 
-    Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-    Change-Id: I9f0fa23a4934d9464379495225e08adc121325b4
+    - counting the number of memory nodes
+    - checking NUMA node id
+    - checking the memory address
+
+    Signed-off-by: Xiong Yining <xiongyining1480@phytium.com.cn>
+    Signed-off-by: Chen Baozi <chenbaozi@phytium.com.cn>
+    Change-Id: Ib7bce3a65c817a5b3bef6c9e0a459c7ce76c7e35
+
 
 NOTE: No modifications to the source code have been done.
       The binaries have been generated for the AARCH64 platform
