@@ -4,50 +4,51 @@ Qemu SBSA TF-A binaries
 These binaries have been created from the mainline TF-A
 code checked out at the following commit ID:
 
-commit f36faa71578a14a8c9910aaa57e761f0256ccd52 (HEAD -> master, origin/master, origin/integration, origin/HEAD)
-Merge: 8dad296d6 57ab6d897
-Author: Lauren Wehrmeister <lauren.wehrmeister@arm.com>
-Date:   Tue Mar 12 19:17:49 2024 +0100
+commit 56b263cb2a25892038761acea8c2b57a638d19bf (HEAD -> integration, origin/integration, gerrit/integration)
+Merge: 09d3fd141 e769f830d
+Author: Yann Gautier <yann.gautier@st.com>
+Date:   Tue Apr 23 10:42:01 2024 +0200
 
-    Merge "fix(cpus): fix a defect in Cortex-A715 erratum 2561034" into integration
+    Merge "feat(qemu): allow ARM_ARCH_MAJOR/MINOR override" into integration
 
 
 This ensures that the following features for qemu_sbsa platform are
 merged upstream and included in the build:
 
-commit 42925c15bee09162c6dfc8c2204843ffac6201c1
+commit 5436047a0e1f32543042d6de9f1f6a3edcd47591
 Author: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
-Date:   Tue Nov 21 14:53:26 2023 +0100
+Date:   Mon Apr 22 17:27:56 2024 +0200
 
-    feat(qemu-sbsa): handle CPU information
+    refactor(qemu): do not hardcode counter frequency
 
-    We want to remove use of DeviceTree from EDK2. So we move
-    functions to TF-A:
+    From QEMU change:
 
-    - counting cpu cores
-    - checking NUMA node id
-    - checking MPIDR
+    > In previous versions of the Arm architecture, the frequency of the
+    > generic timers as reported in CNTFRQ_EL0 could be any IMPDEF value,
+    > and for QEMU we picked 62.5MHz, giving a timer tick period of 16ns.
+    > In Armv8.6, the architecture standardized this frequency to 1GHz.
 
-    And then it gets passed to EDK2 via SMC calls.
+    This change stops TF-A from hardcoding 62.5MHz frequency. Instead value
+    stored in CNTFRQ_EL0 would be used. As a result we get 62.5MHz on older
+    cores and 1GHz on newer ones.
 
-    Change-Id: I1c7fc234ba90ba32433b6e4aa2cf127f26da00fd
+    Change-Id: I7d414ce6d3708e598bbb5a6f79eb2d4ec8e15ac4
     Signed-off-by: Marcin Juszkiewicz <marcin.juszkiewicz@linaro.org>
 
-commit 8b7dd8397dd017b61ecda8447e8956a1d9d6d5d3
-Author: Xiong Yining <xiongyining1480@phytium.com.cn>
-Date:   Fri Jan 12 10:47:03 2024 +0000
+commit 1b694c77c497cb8272c97417ef1fa4f5f9c869c1
+Author: Jean-Philippe Brucker <jean-philippe@linaro.org>
+Date:   Mon Apr 15 14:28:11 2024 +0100
 
-    feat(qemu-sbsa): handle memory information
+    feat(qemu): enable FEAT_ECV when present
 
-    As a part of removing DeviceTree from EDK2, we move functions to TF-A:
+    QEMU supports FEAT_ECV since commit 2808d3b38a52 ("target/arm: Implement
+    FEAT_ECV CNTPOFF_EL2 handling"), in the v9.0.0 release. Enable
+    auto-detecting the feature on the QEMU platforms, in order to set
+    SCR.ECVEN. Without this, EL2 gets undefined instruction exceptions when
+    trying to access the new CNTPOFF register.
 
-    - counting the number of memory nodes
-    - checking NUMA node id
-    - checking the memory address
-
-    Signed-off-by: Xiong Yining <xiongyining1480@phytium.com.cn>
-    Signed-off-by: Chen Baozi <chenbaozi@phytium.com.cn>
-    Change-Id: Ib7bce3a65c817a5b3bef6c9e0a459c7ce76c7e35
+    Change-Id: I555a5f9a9a84fd23e64ca85219ed1599204c6bb2
+    Signed-off-by: Jean-Philippe Brucker <jean-philippe@linaro.org>
 
 
 NOTE: No modifications to the source code have been done.
