@@ -14,8 +14,12 @@
   BASE_NAME                      = X86EmulatorDxe
   FILE_GUID                      = E6727A5E-CBCD-44C8-B37F-78BC3A0C16C8
   MODULE_TYPE                    = UEFI_DRIVER
-  VERSION_STRING                 = 1.0
+  VERSION_STRING                 = 2.0
 
 [Binaries.common.AARCH64]
-  PE32|X86EmulatorDxe.efi|*
-  DXE_DEPEX|X86EmulatorDxe.depex|*
+  PE32|AArch64/EmulatorDxe.efi|*
+  DXE_DEPEX|AArch64/EmulatorDxe.depex|*
+
+[Binaries.common.RISCV64]
+  PE32|RISCV64/EmulatorDxe.efi|*
+  DXE_DEPEX|RISCV64/EmulatorDxe.depex|*
