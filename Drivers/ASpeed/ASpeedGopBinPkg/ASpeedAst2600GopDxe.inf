@@ -13,7 +13,7 @@
   BASE_NAME                      = ASpeedAst2600GopDxe
   FILE_GUID                      = 36f08597-2a8d-4824-9416-59c810b0d9f3
   MODULE_TYPE                    = UEFI_DRIVER
-  VERSION_STRING                 = 1.13.04
+  VERSION_STRING                 = 1.13.05
 
 [Binaries.AArch64]
   PE32|AArch64/ASpeedAst2600Gop.efi|*
