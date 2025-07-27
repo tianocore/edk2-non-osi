@@ -13,7 +13,7 @@ the SHA-256 sums for the blobs can be validated to be as follows:
 
 For Raspberry Pi 3 usage, TF-A was built using the command:
 ```
-make PLAT=rpi3 RPI3_PRELOADED_DTB_BASE=0x10000 PRELOADED_BL33_BASE=0x30000 SUPPORT_VFP=1 RPI3_USE_UEFI_MAP=1 DEBUG=0 fip all
+make PLAT=rpi3 RPI3_PRELOADED_DTB_BASE=0x1f0000 PRELOADED_BL33_BASE=0x30000 SUPPORT_VFP=1 RPI3_USE_UEFI_MAP=1 DEBUG=0 fip all
 ```
 which results in the following memory mapping:
 ```
