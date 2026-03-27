@@ -41,28 +41,6 @@ W: https://github.com/tianocore/tianocore.github.io/wiki/Security
 EDK II Packages:
 ----------------
 
-Platform/Intel/KabylakeOpenBoardBinPkg
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-
-Platform/Intel/WhitleyOpenBoardBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Nathaniel Haller <nathaniel.d.haller@intel.com>
-
-Platform/Intel/EaglestreamOpenBoardBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Nathaniel Haller <nathaniel.d.haller@intel.com>
-
-Platform/Intel/CoffeelakeSiliconBinPkg
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Sai Chaganty <rangasai.v.chaganty@intel.com>
-
-Platform/Intel/CometlakeSiliconBinPkg
-M: Kathappan Esakkithevar <kathappan.esakkithevar@intel.com>
-M: Sai Chaganty <rangasai.v.chaganty@intel.com>
-
 Silicon/AMD
 M: Abner Chang <abner.chang@amd.com>
 M: Abdul Lateef Attar <abdattar@amd.com>
@@ -75,39 +53,6 @@ M: Eric Xing <eric.xing@amd.com>
 Silicon/Ampere/AmpereAltraBinPkg
 M: Nhi Pham <nhi@os.amperecomputing.com>
 M: Vu Nguyen <vunguyen@os.amperecomputing.com>
-
-Silicon/Intel/ElkhartlakeSiliconBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Sai Chaganty <rangasai.v.chaganty@intel.com>
-
-Silicon/Intel/KabylakeSiliconBinPkg
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Sai Chaganty <rangasai.v.chaganty@intel.com>
-
-Silicon/Intel/PurleySiliconBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Chasel Chiu <chasel.chiu@intel.com>
-
-Silicon/Intel/WhitleySiliconBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Nathaniel Haller <nathaniel.d.haller@intel.com>
-
-Silicon/Intel/EaglestreamSiliconBinPkg
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
-M: Chasel Chiu <chasel.chiu@intel.com>
-M: Nathaniel Haller <nathaniel.d.haller@intel.com>
-
-Silicon/Intel/QuarkSocBinPkg
-M: Michael D Kinney <michael.d.kinney@intel.com>
-
-Silicon/Intel/Vlv2SocBinPkg
-M: Zailiang Sun <zailiang.sun@intel.com>
-M: Yi Qian <yi.qian@intel.com>
-
-Silicon/Intel/TigerlakeSiliconBinPkg
-M: Sai Chaganty <rangasai.v.chaganty@intel.com>
-M: Nate DeSimone <nathaniel.l.desimone@intel.com>
 
 Silicon/Intel/AlderlakeSiliconBinPkg
 M: Sai Chaganty <rangasai.v.chaganty@intel.com>
