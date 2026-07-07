@@ -16,10 +16,10 @@
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 2.0
 
-[Binaries.common.AARCH64]
+[Binaries.AARCH64]
   PE32|AArch64/EmulatorDxe.efi|*
   DXE_DEPEX|AArch64/EmulatorDxe.depex|*
 
-[Binaries.common.RISCV64]
+[Binaries.RISCV64]
   PE32|RISCV64/EmulatorDxe.efi|*
   DXE_DEPEX|RISCV64/EmulatorDxe.depex|*
