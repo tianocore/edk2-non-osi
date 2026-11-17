@@ -13,7 +13,7 @@
   BASE_NAME                      = ASpeedAst2700GopDxe
   FILE_GUID                      = 5faee79e-2966-4d66-a959-28b69492e8bb
   MODULE_TYPE                    = UEFI_DRIVER
-  VERSION_STRING                 = 1.14.00
+  VERSION_STRING                 = 1.14.01
 
 [Binaries.AArch64]
   PE32|AArch64/ASpeedAst2700Gop.efi|*
